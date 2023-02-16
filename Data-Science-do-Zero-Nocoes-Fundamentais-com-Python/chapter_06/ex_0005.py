@@ -13,7 +13,7 @@ def is_palindrome(word):
     return is_palindrome(middle(word))
 
 print(is_palindrome('osso'))
-print(is_palindrome('allen'))
+print(is_palindrome('allna'))
 print(is_palindrome('bob'))
 print(is_palindrome('otto'))
 print(is_palindrome('redivider'))
