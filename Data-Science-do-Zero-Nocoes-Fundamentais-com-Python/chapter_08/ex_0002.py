@@ -10,4 +10,4 @@ def is_reverse(word1, word2):
         j = j - 1
     return True
 
-print(is_reverse('pots', 'stop'))
+print(is_reverse('pals', 'slap'))
