@@ -1,4 +1,5 @@
 import random
+import time
 def in_bisect(t, valor):
     limite_inferior = 0
     limite_superior = len(t) -1
@@ -22,4 +23,4 @@ for x in range(100):
 
 thislist.sort()
 
-print(in_bisect(thislist, thislist[random.randint(0, 99)]))
+%timeit print(in_bisect(thislist, thislist[random.randint(0, 99)]))
