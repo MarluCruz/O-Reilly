@@ -55,7 +55,7 @@ total = total_number_of_words(list(d.values()))
 invertido = invert_dict(d)
 top20 = frenquency_word(invertido)
 #print(d)
-print(invertido)
+#print(invertido)
 print('Essa é lista das 20 palavras mais frequentes:')
 for x,i in top20.items():
     print("{} | {}".format(x,i))
