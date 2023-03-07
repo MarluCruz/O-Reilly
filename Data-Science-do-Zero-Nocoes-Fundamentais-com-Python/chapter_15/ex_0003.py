@@ -11,7 +11,7 @@ def point_in_circle(circle, point):
          return True
      else:
          return False
-def rect_in_circle(circle, point):
+def rect_in_circle(circle, rect):
      if distance_between_point(circle.center, point) <= 75:
          return True
      else:
@@ -25,4 +25,10 @@ circle.radius = 75.0
 pointrandom = point()
 pointrandom.x = 0
 pointrandom.y = 0
+box = rectangle()
+box.width = 50.0
+box.height = 50.0
+box.corner = point()
+box.corner.x = 0.0
+box.corner.y = 0.0
 print(point_in_circle(circle, pointrandom))
