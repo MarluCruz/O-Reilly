@@ -4,6 +4,10 @@ class rectangle:
     ''' Represents a rectangle
         attributes:width, height, corner
         '''
+def print_point(p):
+    """Print a Point object in human-readable format."""
+    print('(%g, %g)' % (p.x, p.y))
+    
 def move_rectangle(rectangle, dx, dy):
     rectangle.corner.x += dx
     rectangle.corner.y += dy

@@ -1,19 +1,8 @@
 import math
 
-def distance_between_point(point1, point2):
-    if point1.x > point2.x:
-        catetoX = point1.x - point2.x
-    elif point1.x < point2.x:
-        catetoX = point2.x - point1.x
-    elif point1.x == point2.x:
-        catetoX = 0
-    
-    if point1.y > point2.y:
-        catetoY = point1.y - point2.y
-    elif point1.y < point2.y:
-        catetoY = point2.y - point1.y
-    elif point1.y == point2.y:
-        catetoY = 0
+def distance_between_points(point1, point2):
+    catetoX = point1.x - point2.x
+    catetoY = point1.y - point2.y
     distance = math.sqrt(catetoX**2 + catetoY**2)
     return distance
 class point:
@@ -25,7 +14,7 @@ if __name__ == '__main__':
     point1.y = 1.0
     point2.x = 4.0
     point2.y = 4.0
-    print(distance_between_point(point1, point2))
+    print(distance_between_points(point1, point2))
 
 
 
