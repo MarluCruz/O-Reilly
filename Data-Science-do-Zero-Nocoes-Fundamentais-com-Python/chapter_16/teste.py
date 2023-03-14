@@ -1,4 +1,6 @@
-number = ((121 / 60))
-number2 = int(number)
-number3 = number-number2
-print(int(number3*60))
+from datetime import timedelta, datetime, date
+from ex_0006 import date_to_days
+
+today = datetime.today()
+dateinDays = date_to_days(today)
+print(dateinDays.days)

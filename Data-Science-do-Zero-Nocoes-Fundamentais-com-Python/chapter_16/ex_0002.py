@@ -4,9 +4,15 @@ def verification(time):
     list_number= list(word)
     number = (int(list_number[-2])*10) + int((list_number[-1]))
     return number
+def verification2(time):
+    if time < 10:
+        return time
+    else:
+        return verification(time)
+
 
 def increment(time, seconds):
-    if ((seconds / 60)/60) == int: # Teremos alteração apenas nas horas
+    if ((seconds / 60)%60) == 0: # Teremos alteração apenas nas horas
         time.hour += (seconds / 60)/60
         return
     elif time.second + seconds >= 3600:
@@ -23,9 +29,10 @@ def increment(time, seconds):
                 time.minute += ((seconds - time.second) / 60)
                 if time.minute >= 60:
                     time.hour += int(time.minute / 60)
-                    time.minute = int(((time.minute / 60) - int(time.minute / 60)) * 60)
+                    time.minute = int(((time.minute / 60) - int(time.minute / 60)) * 60) +1
             return
-    elif (((((((time.second +seconds) / 60) / 60) - int(((time.second+seconds) / 60) / 60))*60)*60) >= 60) and  time.second >= 3600:
+    elif(((seconds / 60)/60) == float) and  ((time.second + seconds) >= 3600):
+    #elif (((((((time.second +seconds) / 60) / 60) - int(((time.second+seconds) / 60) / 60))*60)*60) >= 60) and  time.second >= 3600:
         #Termos alteração nas horas e minutos
         time.second += seconds
         time.minute += int((time.second / 60))
@@ -60,5 +67,6 @@ if __name__ == "__main__":
     time.hour = 21
     time.minute = 37
     time.second = 46
-    increment(time, 121)
+    increment(time, 3660)
     print_time(time)
+    #Isso é uma vergonha NUNCA MAIS TENTE REINVENTAR A RODA
