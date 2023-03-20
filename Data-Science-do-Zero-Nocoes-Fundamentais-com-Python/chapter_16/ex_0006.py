@@ -45,6 +45,6 @@ def my_next_birthday(birthday):
 
 if __name__ == "__main__":    
     thisAge = age(date(1998, 9, 21))
-    My_next_birthday = my_next_birthday(datetime(1998, 4, 13, 5, 20, 30))
+    My_next_birthday = my_next_birthday(datetime(1998, 9, 21, 5, 20, 30))
     print("You are {} years old".format(thisAge))
     print("My next birthday will be in {}".format(My_next_birthday))

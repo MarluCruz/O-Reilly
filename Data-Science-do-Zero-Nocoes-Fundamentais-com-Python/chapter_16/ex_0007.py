@@ -105,11 +105,13 @@ def doubleDay(birthday1, birthday2):
             print("O dia duplo é {}/{}/{}!".format(birthday1.year + (diferenca*2), birthday1.month, birthday1.day ))
             print("O mais velho terá {}".format(age_2(birthday1, date(birthday1.year + (diferenca*2), birthday1.month, birthday1.day))))
             print("O mais novo terá {}".format(age_2(birthday2, date(birthday2.year + (diferenca), birthday2.month, birthday2.day))))
+            return True
 
         if birthday1.month < birthday2.month:
             print("O dia duplo é {}/{}/{}!".format(birthday1.year + (diferenca*2), birthday2.month, birthday2.day))
             print("O mais velho terá {}".format(age_2(birthday1, date(birthday1.year + (diferenca*2), birthday1.month, birthday1.day))))
             print("O mais novo terá {}".format(age_2(birthday2, date( birthday2.year + (diferenca), birthday2.month, birthday2.day))))
+            return True
 
     elif age1 < age2:
 
@@ -119,15 +121,17 @@ def doubleDay(birthday1, birthday2):
             print("O dia duplo é {}/{}/{}!".format((birthday2.year + (diferenca*2)), birthday2.month, birthday2.day))
             print("O mais velho terá {}".format(age_2(birthday2, date(birthday2.year + (diferenca*2), birthday2.month, birthday2.day))))
             print("O mais novo terá {}".format(age_2 (birthday1, date(birthday1.year + (diferenca), birthday1.month, birthday1.day))))
+            return True
     
         if birthday2.month < birthday1.month:
             print("O dia duplo é {}/{}/{}!".format((birthday2.year + (diferenca*2)), birthday1.month, birthday1.day))
             print("O mais velho terá {}".format(age_2(birthday2, date(birthday2.year + (diferenca*2), birthday2.month, birthday2.day))))
             print("O mais novo terá {}".format(age_2(birthday1, date(birthday1.year + (diferenca), birthday1.month, birthday1.day))))
+            return True
     
     elif age1 == age2:
         print("A diferença entre as idades é menor que 1.\n Portanto não existe dia duplo")
-        return
+        return False
 
 def days_to_date(days):
  
@@ -190,12 +194,69 @@ def days_to_date(days):
 def doubleDay2(birthday1, birthday2):
     birthday1_to_days = date_to_days(birthday1)
     birthday2_to_days = date_to_days(birthday2)
+
     if birthday1_to_days > birthday2_to_days:
         diference = birthday1_to_days - birthday2_to_days
+        double_day = days_to_date(birthday1_to_days+diference)
+        olderAGe = age_2(birthday2, double_day )
+        youngerAge = age_2(birthday1, double_day)
+        print('O dia duplo será {}'.format(double_day))
+        print('A idade do mais velho tera {} anos de idade'.format(olderAGe))
+        print('A idade do mais novo será {} anos de idade'.format(youngerAge))
+        return True
+    
+    elif birthday1_to_days < birthday2_to_days:
+        diference = birthday2_to_days - birthday1_to_days
+        double_day = days_to_date(birthday2_to_days+diference)
+        olderAGe = age_2(birthday1, double_day )
+        youngerAge = age_2(birthday2, double_day)
+        print('O dia duplo será {}'.format(double_day))
+        print('A idade do mais velho terá {} anos de idade'.format(olderAGe))
+        print('A idade do mais novo será {} anos de idade'.format(youngerAge))
+        return True
+    
+    elif birthday1_to_days == birthday2_to_days:
+        print('Ambos nasceram no mesmo dia não haverá dia duplo')
+        return False
+    
+def nday(birthday1, birthday2, n):
+    birthday1_to_days = date_to_days(birthday1)
+    birthday2_to_days = date_to_days(birthday2)
 
-        print('O dia duplo será {}'.format(days_to_date(birthday1_to_days+diference)))
+    if birthday1_to_days > birthday2_to_days:
+        diference = birthday1_to_days - birthday2_to_days
+        n_day = days_to_date(birthday1_to_days+diference)
+        olderAGe = age_2(birthday2, double_day )
+        youngerAge = age_2(birthday1, double_day)
+        
+        print('O dia duplo será {}'.format(double_day))
+        print('A idade do mais velho tera {} anos de idade'.format(olderAGe))
+        print('A idade do mais novo será {} anos de idade'.format(youngerAge))
+        return True
+    
+    elif birthday1_to_days < birthday2_to_days:
+        diference = birthday2_to_days - birthday1_to_days
+        double_day = days_to_date(birthday2_to_days+diference)
+        olderAGe = age_2(birthday1, double_day )
+        youngerAge = age_2(birthday2, double_day)
+        print('O dia duplo será {}'.format(double_day))
+        print('A idade do mais velho terá {} anos de idade'.format(olderAGe))
+        print('A idade do mais novo será {} anos de idade'.format(youngerAge))
+        return True
+    
+    elif birthday1_to_days == birthday2_to_days:
+        print('Ambos nasceram no mesmo dia não haverá dia duplo')
+        return False
 
+def switchCase(case, birthday1, birthday2):
 
+    if case == 1:
+        doubleDay(birthday1, birthday2)
+    elif case == 2:
+        doubleDay2(birthday1, birthday2)
+    else:
+        return
+    
 def main():
     print("Vamos escolher o ano da primeira data de nascimento:")
     birthday1 = input_dates()
@@ -205,7 +266,15 @@ def main():
     birthday2 = input_dates()
     print("_____________________")
     print()
-    doubleDay2(birthday1, birthday2)
+    case = -1
+    while case != 0:
+        print("Agora que já temos o dia dos nascimentos temos as seguintes opções:")
+        print('\n')
+        print('0. Encerramos por aqui!')
+        print('1. O dia duplo será o dia que a idade de um em anos será\n exatamente o dobro da do outro  ')
+        print('2. O dia duplo sera o dia exato em que um terá o dobro da idade do outro')
+        case = int(input())
+        switchCase(case, birthday1, birthday2)
 
 if __name__ == "__main__":
     main()
