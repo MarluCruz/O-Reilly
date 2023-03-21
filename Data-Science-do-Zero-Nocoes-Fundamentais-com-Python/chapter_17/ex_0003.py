@@ -10,11 +10,10 @@ class Time:
             return self.increment(other)
                 
     def add_time(self, other):   
-        return self.seconds + other.seconds
+        return Time(0, 0 , self.seconds + other.seconds)
     
     def increment(self, seconds):
-        seconds += self.seconds()
-        return int_to_time(seconds)
+        return Time(0,0, self.seconds + seconds)
 
     def __radd__(self, other):
         """Adds two Time objects or a Time object and a number."""
@@ -25,32 +24,36 @@ class Time:
     
     def __str__(self):
         """Returns a string representation of the time."""
-        return '%.2d' % (self.seconds)
+        time = self.int_to_time()
+        return '%.2d:%.2d:%.2d' % (time[0], time[1], time[2])
     
     def time_to_int(self , hour, minute, second):
         minutes = hour * 60 + minute
         seconds = minutes * 60 + second
         return seconds
     
-    def int_to_time(seconds):
-        time = Time()
-        minutes, time.second = divmod(seconds, 60)
-        time.hour, time.minute = divmod(minutes, 60)
-        return time
+    def int_to_time(self):
+        hour = 0
+        minute = 0
+        second = 0
+        minute, second = divmod(self.seconds, 60)
+        hour, minute = divmod(minute, 60)
+        return hour, minute, second
 
     
     def is_after(self, other):
         """Returns True if t1 is after t2; false otherwise."""
-        return self.time_to_int() > other.time_to_int()
+        return self.seconds > other.seconds
     
+    """
     def is_valid(self):
-        """Checks whether a Time object satisfies the invariants."""
+        Checks whether a Time object satisfies the invariants.
         if self.hour < 0 or self.minute < 0 or self.second < 0:
             return False
         if self.minute >= 60 or self.second >= 60:
             return False
-        return True
-    
+        return True"""
+
     
 def main():
     start = Time(9, 45, 00)
@@ -82,6 +85,4 @@ def main():
     
 if __name__ == "__main__":
 
-    #main()
-    teste = Time(1, 30)
-    teste.print_time()
+    main()
