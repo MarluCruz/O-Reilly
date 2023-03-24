@@ -41,9 +41,22 @@ class Deck:
     def shuffle(self):
         random.shuffle(self.cards)
     
+    def sort(self):
+        self.cards.sort()
+    
     def move_cards(self, hand, num):
         for i in range(num):
             hand.add_card(self.pop_card())
+    
+    def deal_hands(self, players, players_cards):
+        hands = list()
+        for x in range(players):
+            hands.append(Hand('Player {}'.format(x+1)))
+            for i in range(players_cards):
+                hands[x].add_card(self.pop_card())
+        return hands
+
+
 
 class Hand(Deck):
     """Represents a hand of playing cards."""
@@ -61,5 +74,9 @@ def find_defining_class(obj, meth_name):
 
   
 if __name__ == '__main__':
-    hand = Hand()
-    print(find_defining_class(hand, 'shuffle'))
+    deck = Deck()
+    deck.shuffle()
+    #print(deck)
+    hands = deck.deal_hands(4, 2)
+    for x in range(len(hands)):
+        print('Player {}:\n{} \n'.format(x+1, hands[x]))
