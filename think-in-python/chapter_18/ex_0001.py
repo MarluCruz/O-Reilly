@@ -56,7 +56,6 @@ class Deck:
                 hands[x].add_card(self.pop_card())
         return hands
 
-
 class Hand(Deck):
     """Represents a hand of playing cards."""
 
